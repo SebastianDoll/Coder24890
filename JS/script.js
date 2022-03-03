@@ -18,11 +18,14 @@ let descuentoProductoB = 0.9; */
 } */
 
 
-function Producto (nombreValor, stockValor, precioValor, descuentoValor){
+function Producto (nombreValor, stockValor, precioValor, descuentoValor, categoriaValor, idValor, imgValor){
     this.nombre = nombreValor;
     this.stock = stockValor;
     this.precio = precioValor;
     this.descuento = descuentoValor;
+    this.categoria = categoriaValor;
+    this.id = idValor;
+    this.img = imgValor
     
     this.venta = function(cantidadComprada){
         this.stock -= cantidadComprada
@@ -46,37 +49,40 @@ function Producto (nombreValor, stockValor, precioValor, descuentoValor){
 let contador = 0
 let listadoProductosMenu = "Estos son nuestros productos: "
 
-const productoA = new Producto("Mesa", 10, 10000, 0.8)
-const productoB = new Producto("Silla", 20, 2000, 0.9)
-const productoC = new Producto("Puerta", 5, 20000, 0.95)
-const productoD = new Producto("dsfsg", 10, 10000, 0.8)
-
+const productoA = new Producto("Mesa", 10, 10000, 0.8, "Madera", 1, "./img/buenos-aires.jpg")
+const productoB = new Producto("Silla", 20, 2000, 0.9, "Plastico", 2, "")
+const productoC = new Producto("Puerta", 5, 20000, 0.95, "Madera", 3, "")
+const productoD = new Producto("Mueble", 10, 10000, 0.8, "Madera", 4, "")
 
 const listaProductos = [productoA, productoB, productoC, productoD]
 
-listaProductos.push( new Producto("asfadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("asffsdgsadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("sadsf", 20, 2000, 0.9))
-listaProductos.push( new Producto("asfSdqwrfadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("asfAVsdvsdvadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("asfasdgzrgzvcdvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("axcbxbsfadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("asfxcnznadvs", 20, 2000, 0.9))
-listaProductos.push( new Producto("asfazegwdvs", 20, 2000, 0.9))
+let categoriaProducto = prompt("Ingrese la categoria de producto que quiere ver:")
 
+const listaSegunCategoria = listaProductos.filter(x => x.categoria == categoriaProducto)
 
+for (const producto of listaSegunCategoria) {
+    let contenedor = document.createElement("div");
+    
+    contenedor.innerHTML = `<div class="card">
+                            <p> Producto: ${producto.nombre}</p>
+                            <b> $ ${producto.precio}</b>
+                            <img src=${producto.img} class="imagen"/>
+                            <button>Comprame!</button></div>`
+  
 
+    document.body.appendChild(contenedor);
+}
 
-for(const producto of listaProductos){
+/* for(const producto of listaProductos){
     contador++
     listadoProductosMenu += "\n" + contador + "- " + producto.nombre
 }
 
 function listarProductos(){
     alert(listadoProductosMenu)
-}
+} */
  
-function menu(){
+/* function menu(){
     let opcion = prompt("Menu: \n1 - Ver productos\n2 - Saludar\nESC- Salir")
 
     switch(opcion){
@@ -114,28 +120,28 @@ function stockInsuficiente(stock) {
 /* function stockSuficiente(stock, nombre) {
     stock -= cantidadComprada;
     console.log("El stock remanente es de: " + stock + nombre);
-} */
+} 
 
-function calcularPrecio(precio, descuento){
-    precioTotalVenta += cantidadComprada * precio * descuento;
+function calcularPrecio(producto){
+    precioTotalVenta += cantidadComprada * producto.precio * producto.descuento;
 }
 
 
-function compra(stock, precio, descuento, producto) {
+function compra(producto) {
     cantidadComprada = parseInt(prompt("Ingrese la cantidad que quiere comprar:"));
-    if(cantidadComprada <= stock) {
+    if(cantidadComprada <= producto.stock) {
     //stockSuficiente(stock, nombre);
     //console.log(producto)
         producto.venta(cantidadComprada)
         if(cantidadComprada > 3){
-            calcularPrecio(precio, descuento)
+            calcularPrecio(producto)
         }
         else{
-            calcularPrecio(precio, 1)
+            calcularPrecio(producto)
         }
     }
     else {
-        stockInsuficiente(stock)
+        stockInsuficiente(producto.stock)
     }
 }
 
@@ -147,15 +153,24 @@ function comprarProductos(){
 
         let nombreCompra = prompt("Ingrese el nombre del producto que quiere comprar:")
 
-        if (nombreCompra == productoA.nombre) {
-            compra(productoA.stock, productoA.precio, productoA.descuento, productoA)
+        let productoBuscado = listaProductos.find(x => x.nombre == nombreCompra)
+
+        if(productoBuscado){
+            compra(productoBuscado)
+        }
+        else{
+            alert('No tenemos ese producto')
+        }
+
+        /* if (nombreCompra == productoA.nombre) {
+            compra(productoA)
         }
         else if (nombreCompra == productoB.nombre) {
-            compra(productoB.stock, productoB.precio, productoB.descuento, productoB)
+            compra(productoB)
         }
         else {
             alert('No tenemos ese producto')
-        }
+        } 
     }
 
     alert("El precio de su compra es de: $" + precioTotalVenta);
@@ -166,7 +181,7 @@ function comprarProductos(){
 menu()
 
 
-
+ */
 
 /* stockProductoA = stockProductoA - cantidadComprada;
 

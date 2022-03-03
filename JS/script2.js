@@ -3,13 +3,52 @@
     largo: 120,
     ancho: 80,
 
+}*/
+
+/* function mayorQue(n) {
+ return (m) => m > n
 }
 
+let mayorQueDiez = mayorQue(10)
+let mayorQueCien = mayorQue(100)
+
+let mayorQueDiez = (m) => m > 10
+
+
+console.log( mayorQueDiez(12) ) // true
+console.log( mayorQueDiez(8) ) // fals
+
+
+
+function suma(a, b){
+    return a + b
+}
+
+let suma = (a, b) => a + b */
+/* function porCadaUno(numeros, acumular){
+    for(const element of numeros){
+        acumular(element)
+    }
+} */
+
+let numeros = [1, 2, 3, 4]
+let total = 0
+
+function acumular(num) {
+ total += num
+}
+
+porCadaUno(numeros, acumular)
+
+console.log(total) // 10
+
+
+/*
 console.log(objetoA)
 
 let apellido = 'Aguero' */
 
-const nombres = ["Kun", "Lio", "Fideo", "Pipi", "Pupi", "Lio"]
+//const nombres = ["Kun", "Lio", "Fideo", "Pipi", "Pupi", "Lio"]
 
 //console.log(nombres.length)
 /*                012345
@@ -24,10 +63,10 @@ nombres.unshift(usuario) */
 /* nombres.pop()
 nombres.shift() */
 
-const nuevoArray = nombres.slice(1, 4)
+/* const nuevoArray = nombres.slice(1, 4)
 
 console.log(nombres.indexOf("Lio"))
-
+ */
 
 /* for( let i = 0; i < nombres.length; i++){
     alert("Hola " + nombres[i])

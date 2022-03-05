@@ -1,3 +1,13 @@
 .card {
   background-color: red;
 }
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+.catalogo {
+  display: flex;
+  flex-direction: row;
+}
